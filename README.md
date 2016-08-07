@@ -1,0 +1,2 @@
+# LennyBlog.Core
+LennyBlog.Core
