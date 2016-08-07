@@ -1,0 +1,36 @@
+﻿@{ 
+
+}
+<link href="~/styles/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container top-0-8">
+    <form action="/Account/Login" method="post" class="form-horizontal">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+        <div class="title control-group">
+            <label class="control-label" for="inputEmail">用户登录</label>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputUserName">用户名</label>
+            <div class="controls">
+                <input type="text" id="inputUserName" class="form-control" style="width:400px;"  placeholder="UserName" name="UserName">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">密码</label>
+            <div class="controls">
+                <input type="password" id="inputPassword" class="form-control" style="width:400px;" placeholder="Password" name="Password">
+            </div>
+        </div>
+        <div class="control-group" style="margin-top:20px;">
+            <div class="controls">
+                <button type="submit" class="btn btn-success">登录</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    </form>
+</div>

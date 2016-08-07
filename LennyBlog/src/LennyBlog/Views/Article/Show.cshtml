@@ -1,0 +1,106 @@
+﻿@model LennyBlog.Models.ViewModels.ArticleViewModel
+@using LennyBlog.Models;
+@using CommonMark
+@using LennyBlog.ViewComponents;
+@{
+    ViewBag.Title = Model.Title;
+}
+<link href="~/styles/view.css" rel="stylesheet" />
+<article>
+    <div class="l_box f_l">
+        <div class="topnews">
+            <h2>您现在的位置是：<a href="/">首页</a>&nbsp;&gt;&nbsp;<a href="/Article/Index">博客</a>&nbsp;&gt;&nbsp;<a href="">@Model.CategoryName</a></h2>
+            <div class="news_title">@Model.Title</div>
+
+            <div class="news_author">
+                <span class="au01"></span><span class="au02">@Model.CreatedDate</span><span class="au03">
+                    共<b>@Model.Browses</b>人围观
+                </span>
+                <strong class="au04 f_r">
+                    <div class="ds-thread-count" data-thread-key="@Model.Id" data-count-type="comments">
+                    </div>
+                </strong>
+            </div>
+            <div class="tags">
+                @if (Model.TagArr != null)
+                {
+                    foreach (var _item in Model.TagArr)
+                    {
+                        <a href="#" target="_blank">@_item</a>
+                    }
+                }
+            </div>
+            <div class="news_about"><strong>简介</strong>@Model.Summary</div>
+            <div class="news_content">
+                @Html.Raw(CommonMarkConverter.Convert(Model.Description))
+            </div>
+            <div class="fenx">
+                <div class="bdsharebuttonbox bdshare-button-style1-24" data-bd-bind="1469717270782">
+                    <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_huaban" data-cmd="huaban" title="分享到花瓣"></a>
+                    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+                    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+                </div>
+                <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "24" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            </div>
+            <div class="nextinfo">
+                @if (!string.IsNullOrEmpty(Model.LastTitle))
+                {
+                    <p>上一篇：<a href="/Article/Show/@Model.LastId">@Model.LastTitle</a></p>
+                }
+                @if (!string.IsNullOrEmpty(Model.NextTitle))
+                {
+                    <p>下一篇：<a href="/Article/Show/@Model.NextId">@Model.NextTitle</a></p>
+                }
+            </div>
+            <div class="otherlink">
+                <h2>相关文章</h2>
+                @await Component.InvokeAsync("RelevantArticleList", new { id = Model.Id })
+                @*@(await Component.InvokeAsync<RelevantArticleListViewComponent>("ssss"))*@
+            </div>
+            <div class="news_pl">
+                <h2>文章评论</h2>
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" data-thread-key="@Model.Id" data-title="@Model.Title" data-url="@Context.Request.Host.ToString()@Context.Request.Path"></div>
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = { short_name: "lennyblog" };
+                    (function () {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript'; ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                         || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
+        </div>
+    </div>
+    <div class="r_box f_r">
+        <div class="tit01">
+            <h3>关注我们</h3>
+            <div class="gzwm">
+                <ul>
+                    <li><a class="xlwb" href="http://weibo.com/nele0716" target="_blank">新浪微博</a></li>
+                    <li><a class="txwb" href="http://t.qq.com/nele0716" target="_blank">腾讯微博</a></li>
+                    <li><a class="rss" href="#" target="_blank">邮箱</a></li>
+                    <li><a class="wx" href="#" onmouseover="tip.start(this)" tips="<font color='#fff'>关注<b>机友汇</b>微信账号</font><br><b><img src='http://www.jiyouh.com/skin/jiyouhui/images/weixintop.jpg'></b>">微信</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="mjs:tip" class="tip" style="position: absolute; left: 1142px; top: 301px; display: none;">
+            <font color="#fff">关注<b>机友汇</b>微信账号</font><br><b><img src="http://www.jiyouh.com/skin/jiyouhui/images/weixintop.jpg"></b>
+        </div>
+        <div class="cloud">
+            <h3>热门标签</h3>
+            @Html.Partial("_LabelCloudSidebarPartial")
+        </div>
+    </div>
+    <!--r_box end -->
+</article>

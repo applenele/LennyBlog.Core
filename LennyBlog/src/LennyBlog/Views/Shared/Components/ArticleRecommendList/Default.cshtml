@@ -1,0 +1,8 @@
+﻿@using LennyBlog.Models;
+@model List<Article>
+ <ul>
+     @foreach (var item in Model)
+     {
+        <li><a href="/" target="_blank">@item.Title</a></li>
+     }
+ </ul>

@@ -1,0 +1,15 @@
+﻿@using LennyBlog.Models.ViewModels;
+@model List<SideArticleCategory>
+<div class="panel panel-default topics">
+    <div class="panel-heading">
+        <h3 class="panel-title">分类</h3>
+    </div>
+    <div class="list-group">
+        @foreach (var item in Model)
+            {
+            <a asp-controller="Article" asp-action="Show" asp-route-id="@item.Id" class="list-group-item">
+                @item.Description  <text>(@item.Count)</text>
+            </a>
+        }
+    </div>
+</div>

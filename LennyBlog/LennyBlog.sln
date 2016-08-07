@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B6C7237-0E0E-420E-B52B-EDCACA3B9F1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5879FD92-159A-420C-B9EA-74165A5DBA1A}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LennyBlog", "src\LennyBlog\LennyBlog.xproj", "{34276174-54C5-4888-89B6-B6736C8A309B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34276174-54C5-4888-89B6-B6736C8A309B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34276174-54C5-4888-89B6-B6736C8A309B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34276174-54C5-4888-89B6-B6736C8A309B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34276174-54C5-4888-89B6-B6736C8A309B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{34276174-54C5-4888-89B6-B6736C8A309B} = {4B6C7237-0E0E-420E-B52B-EDCACA3B9F1B}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+﻿@using LennyBlog.Models;
+@using CommonMark
+@using LennyBlog.ViewComponents;
+@{
+    ViewBag.Title = "关于我们";
+}
+<link href="~/styles/view.css" rel="stylesheet" />
+<link href="~/styles/bootstrap.min.css" rel="stylesheet" />
+<article>
+    <div class="l_box f_l">
+        <div class="topnews">
+            <h2>您现在的位置是：<a href="/">首页</a>&nbsp;&gt;&nbsp;<a href="#">站点</a></h2>
+            <div class="news_title">关于我们</div>
+            <div class="news_content">
+                <ul>
+                    <p>本站点使用.Net Core 开发，可以跨平台部署 </p>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="r_box f_r">
+        <div class="ad" id="r_ad">
+            <div class="mod-sb-panel">
+                <ul>
+                    <li><a href="/Site?to=about">关于我们</a></li>
+                    <li><a href="/Site?to=applyLink">申请链接</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--r_box end -->
+</article>

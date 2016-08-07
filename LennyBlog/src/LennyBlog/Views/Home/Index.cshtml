@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "LennyBlog";
+}
+@using LennyBlog.Models.ViewModels;
+@model IEnumerable<ArticleViewModel>
+@using SmallCode.Pager;
+<link href="~/styles/index.css" rel="stylesheet" />
+
+<div class="l_box f_l">
+    <div class="banner">
+        <div id="slide-holder">
+            <div id="slide-runner">
+                <a href="/" target="_blank"><img id="slide-img-4" src="/images/a1.jpg" alt="" /></a>
+                <a href="/" target="_blank"><img id="slide-img-3" src="/images/a2.jpg" alt="" /></a>
+                <a href="/" target="_blank"><img id="slide-img-2" src="/images/a3.jpg" alt="" /></a>
+                <a href="/" target="_blank"><img id="slide-img-1" src="/images/a4.jpg" alt="" /></a>
+                <div id="slide-controls">
+                    <p id="slide-client" class="text"><strong></strong><span></span></p>
+                    <p id="slide-desc" class="text"></p>
+                    <p id="slide-nav"></p>
+                </div>
+            </div>
+        </div>
+        <script>
+            if (!window.slider) {
+                var slider = {};
+            }
+            $.ajax({
+                type: "get",
+                url: "/Carousel/GetCarousels",
+                async: false,
+                success: function (resp) {
+                    var arrayObj = [];
+                    for (var i = 0; i < resp.length; i++) {
+                        $("#slide-img-" + (i+1)).attr("src", resp[i].imageUrl);
+                        var arr =
+                             {
+                                 "id": "slide-img-" + (i + 1),
+                                 "client": resp[i].title,
+                                 "desc": resp[i].description,
+                             }
+                        arrayObj.push(arr);
+                    }
+                    slider.data = arrayObj;
+                }
+            });
+            //slider.data = [
+            //{
+            //    "id": "slide-img-1", // 与slide-runner中的img标签id对应
+            //    "client": "标题1",
+            //    "desc": "这里修改描述 这里修改描述 这里修改描述" //这里修改描述
+            //},
+            //{
+            //    "id": "slide-img-2",
+            //    "client": "标题2",
+            //    "desc": "add your description here"
+            //},
+            //{
+            //    "id": "slide-img-3",
+            //    "client": "标题3",
+            //    "desc": "add your description here"
+            //},
+            //{
+            //    "id": "slide-img-4",
+            //    "client": "标题4",
+            //    "desc": "add your description here"
+            //}
+            //];
+
+        </script>
+    </div>
+    <!-- banner代码 结束 -->
+    <div class="topnews">
+        <h2>
+            <b>最新</b>文章
+        </h2>
+        @foreach (var item in Model)
+        {
+            <div class="blogs">
+                <figure><img src="/images/01.jpg"></figure>
+                <ul>
+                    <h3><a href="/Article/Show/@item.Id">@item.Title</a></h3>
+                    <p>
+                        @item.Summary
+                    </p>
+                    <p class="autor">
+                        <span class="lm f_l"><a href="/">@item.CreateUserName</a></span>
+                        <span class="dtime f_l">@item.CreatedDate</span>
+                        <span class="viewnum f_r">浏览（<a href="#">@item.Browses</a>）</span>
+                        <span class="pingl f_r">评论（<a href="#">@(await item.GetComments())</a>）</span>
+                    </p>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+<div class="r_box f_r">
+    <div class="tit01">
+        <h3>关注我</h3>
+        <div class="gzwm">
+            <ul>
+                <li><a class="xlwb" href="#" target="_blank">新浪微博</a></li>
+                <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
+                <li><a class="rss" href="portal.php?mod=rss" target="_blank">RSS</a></li>
+                <li><a class="wx" href="mailto:admin@admin.com">邮箱</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--tit01 end-->
+    <div class="ad300x100"> <img src="images/ad300x100.jpg"> </div>
+    <div class="moreSelect" id="lp_right_select">
+        <script>
+            window.onload = function () {
+                var oLi = document.getElementById("tab").getElementsByTagName("li");
+                var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+                for (var i = 0; i < oLi.length; i++) {
+                    oLi[i].index = i;
+                    oLi[i].onmouseover = function () {
+                        for (var n = 0; n < oLi.length; n++) oLi[n].className = "";
+                        this.className = "cur";
+                        for (var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+                        oUl[this.index].style.display = "block"
+                    }
+                }
+            }
+        </script>
+        <div class="ms-top">
+            <ul class="hd" id="tab">
+                <li class="cur"><a href="/">点击排行</a></li>
+                <li><a href="/">最新文章</a></li>
+                <li><a href="/">站长推荐</a></li>
+            </ul>
+        </div>
+        <div class="ms-main" id="ms-main">
+            <div style="display: block;" class="bd bd-news">
+                @Html.Partial("_ArticleSidebarPartial")
+            </div>
+            <div class="bd bd-news">
+                @Html.Partial("_ArticleLatestSidebarPartial")
+            </div>
+            <div class="bd bd-news">
+                @Html.Partial("_ArticleRecommendSidebarPartial")
+            </div>
+        </div>
+        <!--ms-main end -->
+    </div>
+    <!--切换卡 moreSelect end -->
+
+    <div class="cloud">
+        <h3>标签云</h3>
+        @Html.Partial("_LabelCloudSidebarPartial")
+    </div>
+    <div class="links">
+        <h3><span>[<a href="/">申请友情链接</a>]</span>友情链接</h3>
+        @Html.Partial("_LinkListSidebarPartial")
+    </div>
+</div>
+<!--r_box end --> 
