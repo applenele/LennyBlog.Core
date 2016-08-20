@@ -40,8 +40,8 @@ namespace LennyBlog.ViewComponents
         /// <returns></returns>
         private List<SideArticleCalendar> GetArticleCalendarList()
         {
-            return db.Articles.Select(a => a.CreatedDate)
-                  .GroupBy(a => a.GetDateTimeFormats('y')[0])
+            return db.Articles.Select(a => a.CreatedDate.GetDateTimeFormats('y')[0]).ToList()
+                  .GroupBy(a => a)
                   .Select(g => (new SideArticleCalendar() { DateDisplay = g.Key, Count = g.Count() }))
                   .ToList();
         }
