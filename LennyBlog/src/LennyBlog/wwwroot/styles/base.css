@@ -179,6 +179,45 @@ footer {
     #togbook:hover, #gotop:hover {
         opacity: 0.5;
     }
+
+.calendar{
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
+   .calendar h3 {
+        line-height: 40px;
+        color: #38485A;
+        font-size: 18px;
+        border-bottom: 1px solid #E6E6E6;
+        height: 40px;
+    }
+   .calendar ul {
+    padding: 0 0 0 10px;
+    background: url(../images/ph2.png) no-repeat 10px 18px;
+}
+
+    .calendar ul li {
+        border-bottom: solid 1px #EAEAEA;
+        line-height: 30px;
+        height: 30px;
+        overflow: hidden;
+        font-size: 14px;
+        padding: 10px 0 0 30px;
+    }
+
+        .calendar ul li a {
+            display: block;
+        }
+
+            .calendar ul li a:hover {
+                color: #000;
+            }
+
+        .calendar ul li:hover {
+            border-bottom: #000 1px solid;
+        }
+
 /*±Í«©‘∆*/
 .cloud {
     width: 100%;
@@ -195,7 +234,7 @@ footer {
     }
 
     .cloud ul {
-        margin: 20px 0;
+        margin: 5px 0;
     }
 
         .cloud ul li {
@@ -264,7 +303,7 @@ footer {
 /* «–ªªø® */
 .moreSelect {
     width: 100%;
-    margin: 30px 0 20px 0;
+    margin: 20px 0 20px 0;
     overflow: hidden;
 }
 

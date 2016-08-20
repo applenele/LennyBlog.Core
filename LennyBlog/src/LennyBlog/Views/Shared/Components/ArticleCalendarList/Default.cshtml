@@ -1,15 +1,8 @@
 ﻿@using LennyBlog.Models.ViewModels;
 @model List<SideArticleCalendar>
-<div class="panel panel-default topics">
-    <div class="panel-heading">
-        <h3 class="panel-title">日历</h3>
-    </div>
-    <div class="list-group">
-        @foreach (var item in Model)
-            {
-            <a asp-controller="Article" asp-action="Show" asp-route-id="@item.DateDisplay" class="list-group-item">
-                @item.DateDisplay   <text>(@item.Count)</text>
-            </a>
-        }
-    </div>
-</div>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/Article/Show/@item.DateDisplay" target="_blank">@item.DateDisplay (@item.Count) </a></li>
+    }
+</ul>

@@ -95,20 +95,17 @@
     </div>
 </div>
 <div class="r_box f_r">
-    <div class="tit01">
-        <h3>关注我</h3>
-        <div class="gzwm">
-            <ul>
-                <li><a class="xlwb" href="#" target="_blank">新浪微博</a></li>
-                <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
-                <li><a class="rss" href="portal.php?mod=rss" target="_blank">RSS</a></li>
-                <li><a class="wx" href="mailto:admin@admin.com">邮箱</a></li>
-            </ul>
-        </div>
+    <div class="cloud">
+        <h3>标签云</h3>
+        @Html.Partial("_LabelCloudSidebarPartial")
     </div>
-    <!--tit01 end-->
-    <div class="ad300x100"> <img src="images/ad300x100.jpg"> </div>
-    <div class="moreSelect" id="lp_right_select">
+
+    <div class="calendar">
+        <h3>日历</h3>
+        @Html.Partial("_ArticleCalendarSidebarPartial")
+    </div>
+
+    @*<div class="moreSelect" id="lp_right_select">
         <script>
             window.onload = function () {
                 var oLi = document.getElementById("tab").getElementsByTagName("li");
@@ -144,12 +141,9 @@
         </div>
         <!--ms-main end -->
     </div>
-    <!--切换卡 moreSelect end -->
+    <!--切换卡 moreSelect end -->*@
 
-    <div class="cloud">
-        <h3>标签云</h3>
-        @Html.Partial("_LabelCloudSidebarPartial")
-    </div>
+  
     <div class="links">
         <h3><span>[<a href="/">申请友情链接</a>]</span>友情链接</h3>
         @Html.Partial("_LinkListSidebarPartial")
